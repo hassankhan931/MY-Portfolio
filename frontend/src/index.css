@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Remove focus outlines */
+button:focus, a:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+::-webkit-scrollbar{
+  display: none; /* Hide scrollbar for all elements */
+}
+
+/* Animation Delays - Optimized with will-change */
+.animate-delay-200 { 
+  animation-delay: 0.2s;
+  will-change: transform, opacity;
+}
+.animate-delay-400 { 
+  animation-delay: 0.4s;
+  will-change: transform, opacity;
+}
+.animate-delay-600 { 
+  animation-delay: 0.6s;
+  will-change: transform, opacity;
+}
+.animate-delay-800 { 
+  animation-delay: 0.8s;
+  will-change: transform, opacity;
+}
+.animate-delay-1000 { 
+  animation-delay: 1s;
+  will-change: transform, opacity;
+}
+
+/* Typing Effect - Optimized */
+.typing-effect::after {
+  content: '|';
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Stats Animation - Hardware Accelerated */
+.stat-number {
+  opacity: 0;
+  animation: countUp 2s forwards;
+  will-change: opacity;
+}
+
+@keyframes countUp {
+  to { opacity: 1; }
+}
+
+/* Smooth Scrolling with fallback */
+html {
+  scroll-behavior: smooth;
+}
+
+@supports not (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Custom Scrollbar - Optimized */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #4361ee;
+  border-radius: 4px;
+  background-clip: padding-box;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #3a0ca3;
+}
+
+/* RippleGrid - Non-interactive version */
+.ripple-grid-container {
+  pointer-events: none; /* Disabled all pointer events */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  isolation: isolate; /* Better stacking context */
+}
+
+/* Grid Colors - Optimized */
+:root {
+  --grid-color: #2563eb;
+  --grid-opacity: 0.05;
+  --grid-thickness: 15;
+}
+
+.dark {
+  --grid-color: rgba(147, 197, 253, 0.85);
+  --grid-opacity: 0.2;
+  --grid-thickness: 18;
+}
+
+/* Falling Animation - Optimized */
+@keyframes fall {
+  to {
+    transform: translateY(calc(100vh + 2rem));
+  }
+}
+
+.falling-code {
+  will-change: transform;
+  animation: fall linear infinite;
+  backface-visibility: hidden; /* Better performance */
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .falling-code, 
+  .typing-effect::after,
+  .stat-number {
+    animation: none !important;
+  }
+}
+
+/* Optimized Transitions */
+* {
+  transition: 
+    color 200ms ease,
+    background-color 200ms ease;
+}
+
+/* Focus-visible fallback */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  50.01%, 100% {
+    opacity: 0;
+  }
+}
+
+.blinking-caret {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s step-start infinite;
+}
